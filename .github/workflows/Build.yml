@@ -1,0 +1,27 @@
+name: CI Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y build-essential uuid-dev iasl git nasm gcc-aarch64-linux-gnu bc
+
+    - name: Clone EDK2 repositories
+      run: |
+        git clone https://github.com/tianocore/edk2.git --recursive
+        git clone https://github.com/tianocore/edk2-platforms.git
+
+    - name: Run firstrun.sh
+      run: ./firstrun.sh
+
+    - name: Run build.sh
+      run: ./build.sh
