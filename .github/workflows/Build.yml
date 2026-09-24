@@ -17,6 +17,7 @@ jobs:
 
     - name: Clone EDK2 repositories
       run: |
+        cd ..
         git clone --depth 1 --branch edk2-stable202208 https://github.com/tianocore/edk2.git
         git -C edk2 submodule update --init --recursive --depth 1
         git clone --no-checkout --depth 1 https://github.com/tianocore/edk2-platforms.git
