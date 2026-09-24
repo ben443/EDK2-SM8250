@@ -14,10 +14,17 @@ Tested on Ubuntu 18.04.
 First, clone EDK2.
 
 ```
-cd ..
-git clone https://github.com/tianocore/edk2.git --recursive
-git clone https://github.com/tianocore/edk2-platforms.git
+git clone --depth 1 --branch edk2-stable202208 https://github.com/tianocore/edk2.git ../edk2
+git -C ../edk2 submodule update --init --recursive --depth 1
+test ! -e ../edk2-platforms || { echo "Please remove ../edk2-platforms first"; exit 1; }
+git clone --no-checkout --depth 1 https://github.com/tianocore/edk2-platforms.git ../edk2-platforms
+git -C ../edk2-platforms fetch --depth 1 origin 3c3b1168017073c2bb2d97336c5929ebae805be1
+git -C ../edk2-platforms checkout -B pinned-edk2-stable202208 FETCH_HEAD
+git -C ../edk2-platforms submodule update --init --recursive --depth 1
 ```
+
+The `edk2-platforms` checkout is pinned to a matching 2022-08 commit because newer upstream revisions are not compatible with this platform tree.
+These commands expect a recent Git version with `git -C` and shallow submodule update support.
 
 You should have all three directories side by side.
 
