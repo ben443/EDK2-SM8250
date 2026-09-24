@@ -17,9 +17,8 @@ First, clone EDK2.
 cd ..
 git clone --depth 1 --branch edk2-stable202208 https://github.com/tianocore/edk2.git
 git -C edk2 submodule update --init --recursive --depth 1
-rm -rf edk2-platforms
-git init edk2-platforms
-git -C edk2-platforms remote add origin https://github.com/tianocore/edk2-platforms.git
+test ! -e edk2-platforms || { echo "Please remove ./edk2-platforms first"; exit 1; }
+git clone --no-checkout --depth 1 https://github.com/tianocore/edk2-platforms.git
 git -C edk2-platforms fetch --depth 1 origin 3c3b1168017073c2bb2d97336c5929ebae805be1
 git -C edk2-platforms checkout -B pinned-edk2-stable202208 FETCH_HEAD
 ```
