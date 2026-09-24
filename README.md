@@ -24,6 +24,7 @@ git -C edk2-platforms checkout -B pinned-edk2-stable202208 FETCH_HEAD
 ```
 
 The `edk2-platforms` checkout is pinned to a matching 2022-08 commit because newer upstream revisions are not compatible with this platform tree.
+These commands expect a recent Git version with `git -C` and shallow submodule update support.
 
 You should have all three directories side by side.
 
