@@ -9,7 +9,7 @@ git -C edk2 submodule update --init --recursive --depth 1
 git init edk2-platforms
 git -C edk2-platforms remote add origin https://github.com/tianocore/edk2-platforms.git
 git -C edk2-platforms fetch --depth 1 origin 3c3b1168017073c2bb2d97336c5929ebae805be1
-git -C edk2-platforms checkout -b pinned-edk2-stable202208 FETCH_HEAD
+git -C edk2-platforms checkout -B pinned-edk2-stable202208 FETCH_HEAD
 cd "$curdir"
 ./firstrun.sh
 ./build.sh
