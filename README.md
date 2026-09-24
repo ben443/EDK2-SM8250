@@ -23,6 +23,8 @@ git -C edk2-platforms fetch --depth 1 origin 3c3b1168017073c2bb2d97336c5929ebae8
 git -C edk2-platforms checkout -B pinned-edk2-stable202208 FETCH_HEAD
 ```
 
+The `edk2-platforms` checkout is pinned to a matching 2022-08 commit because newer upstream revisions are not compatible with this platform tree.
+
 You should have all three directories side by side.
 
 Next, install dependencies:
