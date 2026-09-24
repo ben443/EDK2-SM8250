@@ -20,4 +20,4 @@ jobs:
     - uses: actions/upload-artifact@v4.3.3
       with:
         name: Galaxy S20
-        path: ./workspace/boot.*
+        path: /out/
