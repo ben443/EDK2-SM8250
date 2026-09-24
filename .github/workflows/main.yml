@@ -9,15 +9,22 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4.1.5
-    - name: CI Build
-      run: chmod +x ci-build.sh && ./ci-build.sh
+      - uses: actions/checkout@v4.1.5
 
-    - uses: actions/upload-artifact@v4.3.3
-      with:
-        name: Galaxy S20
-        path: /out/
+      - name: CI Build
+        run: chmod +x ci-build.sh && ./ci-build.sh
+
+      - name: Collect build output
+        run: |
+          mkdir -p out
+          cp workspace/boot_uefi.img out/boot_uefi.img
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4.3.3
+        with:
+          name: Galaxy S20
+          path: out/boot_uefi.img
+          if-no-files-found: error
