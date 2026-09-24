@@ -6,6 +6,7 @@ curdir="$PWD"
 cd ..
 git clone --depth 1 --branch edk2-stable202208 https://github.com/tianocore/edk2.git
 git -C edk2 submodule update --init --recursive --depth 1
+rm -rf edk2-platforms
 git init edk2-platforms
 git -C edk2-platforms remote add origin https://github.com/tianocore/edk2-platforms.git
 git -C edk2-platforms fetch --depth 1 origin 3c3b1168017073c2bb2d97336c5929ebae805be1
